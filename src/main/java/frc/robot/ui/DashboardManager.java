@@ -12,7 +12,7 @@ public class DashboardManager {
 
   private final ShuffleboardTab tuningTab;
   // The 'e' prefix just means entry here.
-  private NetworkTableEntry eMaxRobotSpeed;
+  private NetworkTableEntry eRobotSpeedCap;
   private NetworkTableEntry eSaveButton;
 
   public DashboardManager() {
@@ -49,7 +49,7 @@ public class DashboardManager {
   }
 
 
-  public double maxRobotSpeed() { return eMaxRobotSpeed.getDouble(TunableConstants.robotSpeedCap()); }
+  public double robotSpeedCap() { return eRobotSpeedCap.getDouble(TunableConstants.robotSpeedCap()); }
 
   public boolean isSaveRequested() {
     // If the save button is pressed

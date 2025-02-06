@@ -13,9 +13,7 @@ public class UpdatePreferencesCommand extends Command {
 
   @Override
   public void execute() {
-    // The 'n' prefix means "new"
-    double nMaxRobotSpeed = m_dashboard.maxRobotSpeed();
-    TunableConstants.updateConstants();
+    TunableConstants.updateConstants(m_dashboard.robotSpeedCap());
   }
 
   @Override
