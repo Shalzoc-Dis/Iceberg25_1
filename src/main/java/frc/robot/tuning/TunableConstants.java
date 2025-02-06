@@ -12,18 +12,22 @@ import edu.wpi.first.wpilibj.Preferences;
 public class TunableConstants {
   private TunableConstants() {};
 
-  private static double maxRobotSpeed;
-  public static double maxRobotSpeed() { return maxRobotSpeed; }
+  // To add a new tunable constant, make sure to create a default constant, add a field here along with a getter, add it to the loadFromPreferences, 
+  // update, and save methods, and add a NetworkTable entry and getter in the DashboardManager. It is a lot of work, but I'm working on redcing that.
+
+  private static double robotSpeedCap;
+  public static double robotSpeedCap() { return robotSpeedCap; }
 
 
 
   public static void loadFromPreferences() {
     // FIXME: Find a way to allow this to be done without writhing this for every single constant. Use an array and a loop or someothing.
-    maxRobotSpeed = Preferences.getDouble(DefaultConstants.D_MAX_SPEED.key(), DefaultConstants.D_MAX_SPEED.val());
+    robotSpeedCap = Preferences.getDouble(DefaultConstants.D_ROBOT_SPEED_CAP.key(), DefaultConstants.D_ROBOT_SPEED_CAP.val());
   }
 
   /** Call periodically to update the values from the dashboard. This allows for live editing */
-  public static void updateConstants() {
+  public static void updateConstants(double nMaxRobotSpeed) {
+    robotSpeedCap = nMaxRobotSpeed;
 
 
 
@@ -31,7 +35,7 @@ public class TunableConstants {
 
   /** Saves the current runtime values to persistent storage */
   public static void saveToPreferences() {
-
+    Preferences.setDouble(DefaultConstants.D_ROBOT_SPEED_CAP.key(), DefaultConstants.D_ROBOT_SPEED_CAP.val());
   }
 
 

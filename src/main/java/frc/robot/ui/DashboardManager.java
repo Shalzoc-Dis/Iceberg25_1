@@ -34,11 +34,30 @@ public class DashboardManager {
   /** Update the layout based on the current mode (Auto, Teleop, ...)
    * This can modify widgets and create new tabs.
    */
-  public void updateMode(String mode) {
-    tuningTab.getLayout(mode + " Layout", "BuiltInLayouts.kList");
+  public void updateMode(Modes mode) {
+    String modeName;
+
+    switch (mode) {
+      case  TESTING:
+        modeName = "Testing";
+        break;
+      default:
+        modeName = "Testing";
+        break;
+    }
+    tuningTab.getLayout(modeName + " Layout", "BuiltInLayouts.kList");
   }
 
 
-  public double maxRobotSpeed() { return eMaxRobotSpeed.getDouble(TunableConstants.maxRobotSpeed()); }
+  public double maxRobotSpeed() { return eMaxRobotSpeed.getDouble(TunableConstants.robotSpeedCap()); }
+
+  public boolean isSaveRequested() {
+    // If the save button is pressed
+    return false;
+  }
+
+  public enum Modes {
+    TESTING, AUTONOMOUS, TELEOP, DISABLED
+  }
 
 }

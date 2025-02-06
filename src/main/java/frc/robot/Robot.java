@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+import frc.robot.ui.DashboardManager;
+
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
@@ -23,7 +25,9 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    m_robotContainer.updateShuffleboardMode(DashboardManager.Modes.DISABLED);
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -33,6 +37,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    m_robotContainer.updateShuffleboardMode(DashboardManager.Modes.DISABLED);
+
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     if (m_autonomousCommand != null) {
@@ -48,6 +54,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    m_robotContainer.updateShuffleboardMode(DashboardManager.Modes.TELEOP);
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -61,6 +69,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {
+    m_robotContainer.updateShuffleboardMode(DashboardManager.Modes.TESTING);
+
     CommandScheduler.getInstance().cancelAll();
   }
 

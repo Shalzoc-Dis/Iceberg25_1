@@ -15,6 +15,6 @@ public class DefaultConstants {
   /** Robot wheel diameter in inches */
   public static final Const<Integer> D_WHEEL_DIAMETER =  new Const<>("D_WHEEL_DIAMETER", 4);
   /** Max allowed robot speed in m/s */
-  public static final Const<Double> D_MAX_SPEED = new Const<>("D_MAX_SPEED", 1.0);
+  public static final Const<Double> D_ROBOT_SPEED_CAP = new Const<>("D_ROBOT_SPEED_CAP", 1.0);
 
 }
