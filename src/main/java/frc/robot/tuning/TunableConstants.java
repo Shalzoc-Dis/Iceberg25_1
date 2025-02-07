@@ -26,8 +26,8 @@ public class TunableConstants {
   }
 
   /** Call periodically to update the values from the dashboard. This allows for live editing */
-  public static void updateConstants(double nMaxRobotSpeed) {
-    robotSpeedCap = nMaxRobotSpeed;
+  public static void updateConstants(double nRobotSpeedCap) {
+    robotSpeedCap = nRobotSpeedCap;
 
 
 
