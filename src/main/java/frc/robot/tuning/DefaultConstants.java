@@ -22,5 +22,16 @@ public class DefaultConstants {
     entries.add(new Const<Integer>("D_WHEEL_DIAMETER", 4));
     /** Max allowed robot speed in m/s */
     entries.add(new Const<Double>("D_ROBOT_SPEED_CAP", 1.0));
+    /** This is the default name the tune is given */
+    entries.add(new Const<String>("D_TUNE_NAME)", "Default Tune"));
+  }
+
+  public Const<?> find(String key) {
+    for (Const<?> item : entries) {
+      if (item.key() == key) {
+        return item;
+      }
+    }
+      return null;
   }
 }

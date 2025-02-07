@@ -1,6 +1,8 @@
 package frc.robot.ui;
 
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -12,11 +14,14 @@ public class DashboardManager {
 
   private final ShuffleboardTab tuningTab;
   // The 'e' prefix just means entry here.
-  private NetworkTableEntry eRobotSpeedCap;
+  private List<NetworkTableEntry> entries = new ArrayList<>();
   private NetworkTableEntry eSaveButton;
 
   public DashboardManager() {
     tuningTab = Shuffleboard.getTab("Tuning");
+
+    // Add a network table entry for the save button
+    entries.add();
 
     // Create lists and widgets for the tunable constants.
 
