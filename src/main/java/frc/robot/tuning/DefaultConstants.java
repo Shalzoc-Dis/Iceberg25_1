@@ -1,9 +1,10 @@
 package frc.robot.tuning;
 
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 import frc.robot.tuning.Const;
-
-
-
 
 /**
  * This contains lots of default constants that are defined in the program and not in Shuffleboard. 
@@ -12,9 +13,14 @@ import frc.robot.tuning.Const;
  */
 public class DefaultConstants {
 
-  /** Robot wheel diameter in inches */
-  public static final Const<Integer> D_WHEEL_DIAMETER =  new Const<>("D_WHEEL_DIAMETER", 4);
-  /** Max allowed robot speed in m/s */
-  public static final Const<Double> D_ROBOT_SPEED_CAP = new Const<>("D_ROBOT_SPEED_CAP", 1.0);
+  public static List<Const<?>> entries = new ArrayList<>();
 
+  public DefaultConstants() {
+    /** Max allowed robot angular velocity in rad/s */
+    entries.add(new Const<Double>("D_ROBOT_ANGULAR_VELOCITY_CAP", 0.2));
+    /** Robot wheel diameter in inches */
+    entries.add(new Const<Integer>("D_WHEEL_DIAMETER", 4));
+    /** Max allowed robot speed in m/s */
+    entries.add(new Const<Double>("D_ROBOT_SPEED_CAP", 1.0));
+  }
 }

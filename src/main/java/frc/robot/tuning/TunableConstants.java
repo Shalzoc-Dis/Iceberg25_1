@@ -12,12 +12,8 @@ import edu.wpi.first.wpilibj.Preferences;
 public class TunableConstants {
   private TunableConstants() {};
 
-  // To add a new tunable constant, make sure to create a default constant, add a field here along with a getter, add it to the loadFromPreferences, 
-  // update, and save methods, and add a NetworkTable entry and getter in the DashboardManager. It is a lot of work, but I'm working on redcing that.
-
   private static double robotSpeedCap;
   public static double robotSpeedCap() { return robotSpeedCap; }
-
 
 
   public static void loadFromPreferences() {
@@ -26,8 +22,8 @@ public class TunableConstants {
   }
 
   /** Call periodically to update the values from the dashboard. This allows for live editing */
-  public static void updateConstants(double nMaxRobotSpeed) {
-    robotSpeedCap = nMaxRobotSpeed;
+  public static void updateConstants(double nRobotSpeedCap) {
+    robotSpeedCap = nRobotSpeedCap;
 
 
 
