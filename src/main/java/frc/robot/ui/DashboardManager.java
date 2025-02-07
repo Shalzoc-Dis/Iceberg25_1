@@ -18,10 +18,13 @@ public class DashboardManager {
   private NetworkTableEntry eSaveButton;
 
   public DashboardManager() {
+    TunableConstants.init();
     tuningTab = Shuffleboard.getTab("Tuning");
 
     // Add a network table entry for the save button
-    entries.add();
+    for (Object item : TunableConstants.workingValues) {
+      // Substitute a simple declaration of a field for network table entries.
+    }
 
     // Create lists and widgets for the tunable constants.
 
@@ -52,9 +55,6 @@ public class DashboardManager {
     }
     tuningTab.getLayout(modeName + " Layout", "BuiltInLayouts.kList");
   }
-
-
-  public double robotSpeedCap() { return eRobotSpeedCap.getDouble(TunableConstants.robotSpeedCap()); }
 
   public boolean isSaveRequested() {
     // If the save button is pressed

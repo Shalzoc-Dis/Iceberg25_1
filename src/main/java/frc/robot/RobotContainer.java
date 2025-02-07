@@ -16,11 +16,8 @@ public class RobotContainer {
 
   // Create the dashboard manager UI
   private final DashboardManager m_DashboardManager = new DashboardManager();
+
   public RobotContainer() {
-
-    // Load robot constants
-    TunableConstants.loadFromPreferences();
-
 
     configureBindings();
 

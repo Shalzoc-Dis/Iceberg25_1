@@ -13,9 +13,15 @@ import frc.robot.tuning.Const;
  */
 public class DefaultConstants {
 
+  private DefaultConstants() {};
+  private static DefaultConstants m_instance;
+
   public static List<Const<?>> entries = new ArrayList<>();
 
-  public DefaultConstants() {
+public static synchronized void init() {
+  if (m_instance == null) {
+    m_instance = new DefaultConstants();
+
     /** Max allowed robot angular velocity in rad/s */
     entries.add(new Const<Double>("D_ROBOT_ANGULAR_VELOCITY_CAP", 0.2));
     /** Robot wheel diameter in inches */
@@ -23,8 +29,9 @@ public class DefaultConstants {
     /** Max allowed robot speed in m/s */
     entries.add(new Const<Double>("D_ROBOT_SPEED_CAP", 1.0));
     /** This is the default name the tune is given */
-    entries.add(new Const<String>("D_TUNE_NAME)", "Default Tune"));
+    entries.add(new Const<String>("D_TUNE_NAME", "Default Tune"));
   }
+}
 
   public Const<?> find(String key) {
     for (Const<?> item : entries) {
