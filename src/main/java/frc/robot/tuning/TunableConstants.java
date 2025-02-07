@@ -37,22 +37,10 @@ public class TunableConstants {
       else if(item.val().getClass() == String.class) {
         savedPreferences.add(i, Preferences.getString(item.key(), (String) item.val()));
       }
-      else (
+      else {
         // TODO Throw an error or handle it somehow
-      )
+      }
     }
-  }
-
-  /** Call periodically to update the values from the dashboard. This allows for live editing */
-  public static void updateConstants(List<?> newConstantsList) {
-    robotSpeedCap = nRobotSpeedCap;
-  
-    for (int i = 0; i < newConstantsList.size(); i++) {
-      savedPreferences.add
-    }
-
-
-
   }
 
   /** Saves the current runtime values to persistent storage */
