@@ -8,18 +8,20 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.networktables.GenericEntry;
+
 import frc.robot.tuning.TunableConstants;
 
 public class DashboardManager {
 
-  private final ShuffleboardTab tuningTab;
+  private final ShuffleboardTab m_tuningTab;
   // The 'e' prefix just means entry here.
   private List<NetworkTableEntry> entries = new ArrayList<>();
-  private NetworkTableEntry eSaveButton;
+  private GenericEntry eSaveButton;
 
   public DashboardManager() {
     TunableConstants.init();
-    tuningTab = Shuffleboard.getTab("Tuning");
+    m_tuningTab = Shuffleboard.getTab("Tuning");
 
     // Add a network table entry for the save button
     for (Object item : TunableConstants.tunables) {
@@ -30,9 +32,9 @@ public class DashboardManager {
 
     // Create a save button widget (a toggle button is a common choice)
     // FIXME Type mismatch
-    // eSaveButton = tuningTab.add("Save Preferences", false)
-    //                             .withWidget(BuiltInWidgets.kToggleButton)
-    //                             .getEntry();
+    eSaveButton = m_tuningTab.add("Save Preferences", false)
+                                .withWidget(BuiltInWidgets.kToggleButton)
+                                .getEntry();
   }
 
 
@@ -46,14 +48,14 @@ public class DashboardManager {
     String modeName;
 
     switch (mode) {
-      case  TESTING:
+      case TESTING:
         modeName = "Testing";
         break;
       default:
         modeName = "Testing";
         break;
     }
-    tuningTab.getLayout(modeName + " Layout", "BuiltInLayouts.kList");
+    m_tuningTab.getLayout(modeName + " Layout", "BuiltInLayouts.kList");
   }
 
   public boolean isSaveRequested() {

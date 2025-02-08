@@ -4,12 +4,12 @@ public class Const<T> {
 
   private String m_key;
   private T m_value;
-  private boolean m_tuneable = false;
+  private boolean m_tunable = false;
 
   public Const(String key, T value, boolean tunable) {
     m_key = key;
     m_value = value;
-    m_tuneable = tunable;
+    m_tunable = tunable;
   }
 
   public Const(String key, T value) {
@@ -26,7 +26,7 @@ public class Const<T> {
   }
 
   public boolean tunable() {
-    return m_tuneable;
+    return m_tunable;
   }
 
 }

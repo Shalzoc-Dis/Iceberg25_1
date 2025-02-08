@@ -1,8 +1,8 @@
 package frc.robot.tuning;
 
-import frc.robot.tuning.Const;
-import frc.robot.tuning.DefaultConstants;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -29,6 +29,9 @@ public class TunableConstants {
       loadFromPreferences();
     }
   }
+
+  /** This is a network table to house the constants that can be used for tuning */
+  // private static final NetworkTable tuningTable = NetworkTableInstance.getDefault().getTable("Tuning");
 
 
   /** Load the preferences from storage into memory for use */
