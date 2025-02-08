@@ -22,7 +22,7 @@ public class DashboardManager {
     tuningTab = Shuffleboard.getTab("Tuning");
 
     // Add a network table entry for the save button
-    for (Object item : TunableConstants.workingValues) {
+    for (Object item : TunableConstants.tunables) {
       // Substitute a simple declaration of a field for network table entries.
     }
 

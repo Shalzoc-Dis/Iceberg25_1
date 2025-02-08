@@ -16,47 +16,43 @@ public class TunableConstants {
 
   private TunableConstants() {};
   private static TunableConstants m_instance;
+  private static List<Const<?>> m_defaults;
 
   /** This merely contains the values, it does not contain the keys. */
-  public static List<Object> workingValues = new ArrayList<>();
+  public static List<Const<?>> tunables = new ArrayList<>();
 
   /** Initialize the tunable constants and load them from persistent storage */
   public static synchronized void init() {
-    DefaultConstants.init();
     if (m_instance == null) {
       m_instance = new TunableConstants();
-
-      for (Const<?> item : DefaultConstants.entries) {
-        workingValues.add(item.val());
-      }
+      m_defaults = DefaultConstants.getEntries();
+      loadFromPreferences();
     }
-    loadFromPreferences();
   }
 
 
   /** Load the preferences from storage into memory for use */
   public static void loadFromPreferences() {
-    // FIXME: Find a way to allow this to be done without writhing this for every single constant. Use an array and a loop or something.
-    // robotSpeedCap = Preferences.getDouble(DefaultConstants.D_ROBOT_SPEED_CAP.key(), DefaultConstants.D_ROBOT_SPEED_CAP.val());
 
-    for (int i = 0; i < DefaultConstants.entries.size(); i++) {
-      Const<?> item = DefaultConstants.entries.get(i);
+    for (Const<?> item : m_defaults) {
+
       Object value = item.val();
+      String key = item.key();
 
       if (value instanceof Double) {
-        workingValues.add(i, Preferences.getDouble(item.key(), (Double) value));
+        tunables.add(new Const<Double>(key, Preferences.getDouble(key, (Double) value)));
       } 
       else if (value instanceof Boolean) {
-        workingValues.add(i, Preferences.getBoolean(item.key(), (Boolean) value));
+        tunables.add(new Const<Boolean>(key, Preferences.getBoolean(key, (Boolean) value)));
       } 
       else if (value instanceof String) {
-        workingValues.add(i, Preferences.getString(item.key(), (String) value));
+        tunables.add(new Const<String>(key, Preferences.getString(key, (String) value)));
       } 
       else if (value instanceof Integer) {
-        workingValues.add(i, Preferences.getInt(item.key(), (Integer) value));
+        tunables.add(new Const<Integer>(key, Preferences.getInt(key, (Integer) value)));
       } 
       else if (value instanceof Float) {
-        workingValues.add(i, Preferences.getFloat(item.key(), (Float) value));
+        tunables.add(new Const<Float>(key, Preferences.getFloat(key, (Float) value)));
       } 
       else {
         // TODO: Throw an error or handle it somehow
@@ -67,25 +63,24 @@ public class TunableConstants {
 
   /** Saves the current runtime values to persistent storage */
   public static void saveToPreferences() {
-    // Preferences.setDouble(DefaultConstants.D_ROBOT_SPEED_CAP.key(), DefaultConstants.D_ROBOT_SPEED_CAP.val());
-    for (int i = 0; i < workingValues.size(); i++) {
-      Const<?> item = DefaultConstants.entries.get(i);
+    for (Const<?> item : tunables) {
       Object value = item.val();
-      
+      String key = item.key();
+
       if (value instanceof Double) {
-        Preferences.setDouble(item.key(), (Double) value);
+        Preferences.setDouble(key, (Double) value);
       } 
       else if (value instanceof Boolean) {
-        Preferences.setBoolean(item.key(), (Boolean) value);
+        Preferences.setBoolean(key, (Boolean) value);
       } 
       else if (value instanceof String) {
-        Preferences.setString(item.key(), (String) value);
+        Preferences.setString(key, (String) value);
       } 
       else if (value instanceof Integer) {
-        Preferences.setInt(item.key(), (Integer) value);
+        Preferences.setInt(key, (Integer) value);
       } 
       else if (value instanceof Float) {
-        Preferences.setFloat(item.key(), (Float) value);
+        Preferences.setFloat(key, (Float) value);
       } 
       else {
         // TODO: Throw an error or handle it somehow
@@ -100,7 +95,7 @@ public class TunableConstants {
     for (int i = 0; i < DefaultConstants.entries.size(); i++) {
       Const<?> item = DefaultConstants.entries.get(i);
       if (item.key() == key) {
-        return workingValues.get(i);
+        return tunables.get(i);
       }
     }
     return null;
