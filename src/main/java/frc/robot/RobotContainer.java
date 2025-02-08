@@ -9,24 +9,18 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import frc.robot.ui.DashboardManager;
-import frc.robot.commands.UpdatePreferencesCommand;
 import frc.robot.commands.SavePreferencesCommand;
-import frc.robot.tuning.TunableConstants;
 
 public class RobotContainer {
 
   // Create the dashboard manager UI
   private final DashboardManager m_DashboardManager = new DashboardManager();
+
   public RobotContainer() {
-
-    // Load robot constants
-    TunableConstants.loadFromPreferences();
-
 
     configureBindings();
 
     // Schedule commands
-    CommandScheduler.getInstance().schedule(new UpdatePreferencesCommand(m_DashboardManager));
     CommandScheduler.getInstance().schedule(new SavePreferencesCommand(m_DashboardManager));
   }
 
